@@ -1,6 +1,6 @@
 <?php
 /*
- * This is meant to serve as the admininstrative-side discount management block. This block will
+ * This is meant to serve as the administrative-side discount management block. This block will
  * allow admins to input new discount codes for existing courses. This will involve the course, the 
  * code, and the discount amount. The block should also display the new price for the course, and
  * other important course information. 
