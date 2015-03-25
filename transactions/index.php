@@ -1,4 +1,15 @@
 <?php
+/*
+ * The Transactions portion of the Moodle Payment Plugin is meant to serve as the admin reporting
+ * tool for behind the scenes, government tracking of the financial aspects of the transactions
+ * processed by the Moodle payment plugin. This will involve reading the logs produced by the 
+ * other payment plugin components -- mainly the payment and discount components.
+ */
+//-------------------------------------------------------------------------------------------------------------------
+//
+//          Moodle Extras
+//
+//-------------------------------------------------------------------------------------------------------------------
 
 //Required Libraries
 require('../../config.php');
@@ -29,9 +40,28 @@ $url = new moodle_url('/admin/report/transactions/index.php', array('id' => $id)
 //raise_memory_limit(MEMORY_EXTRA);
 //core_php_time_limit::raise();
 
+//-------------------------------------------------------------------------------------------------------------------
+//
+//          Report Controls
+//
+//-------------------------------------------------------------------------------------------------------------------
 
 
 
+
+//-------------------------------------------------------------------------------------------------------------------
+//
+//          Report Display
+//
+//-------------------------------------------------------------------------------------------------------------------
+
+
+
+//-------------------------------------------------------------------------------------------------------------------
+//
+//          Logical Functions
+//
+//-------------------------------------------------------------------------------------------------------------------
 
 //ToDo: complete this method: the code is generic from the internet -- needs to be adapted
 //Given a start date, an end date and a file location, dump the transaction history into the .csv
