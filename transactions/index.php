@@ -68,6 +68,26 @@ echo $OUTPUT -> select(end_month_selector);
 //-------------------------------------------------------------------------------------------------------------------
 
 
+//    $table = new html_table();
+//    $table->head  = array($strissue, $strstatus, $strdesc, $strconfig);
+//    $table->rowclasses = array('leftalign issue', 'leftalign status', 'leftalign desc', 'leftalign config');
+//    $table->attributes = array('class'=>'admintable securityreport generaltable');
+//    $table->id = 'securityissuereporttable';
+//    $table->data  = array();
+//
+//    // print detail of one issue only
+//    $row = array();
+//    $row[0] = report_security_doc_link($issue, $result->name);
+//    $row[1] = $statusarr[$result->status];
+//    $row[2] = $result->info;
+//    $row[3] = is_null($result->link) ? '&nbsp;' : $result->link;
+//
+//    $PAGE->set_docs_path('report/security/' . $issue);
+//
+//    $table->data[] = $row;
+//
+//    echo html_writer::table($table);
+ 
 
 //-------------------------------------------------------------------------------------------------------------------
 //
