@@ -18,3 +18,5 @@ $plugin->release = 'Stable';
     'mod_forum' => ANY_VERSION,
     'mod_data'  => TODO);
 */
+
+?>

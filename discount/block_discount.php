@@ -20,3 +20,5 @@ class block_discount extends block_base {
         
     } //End public function get_content()    
 } //End Class
+
+?>
