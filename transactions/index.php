@@ -21,14 +21,8 @@ define('DEFAULT_PAGE_SIZE', 20);
 define('SHOW_ALL_PAGE_SIZE', 5000);
 
 //Variables of Import
-//$id         = required_param('id', PARAM_INT); // course id.
-//$roleid     = optional_param('roleid', 0, PARAM_INT); // which role to show
-//$instanceid = optional_param('instanceid', 0, PARAM_INT); // instance we're looking at.
-//$timefrom   = optional_param('timefrom', 0, PARAM_INT); // how far back to look...
-//$action     = optional_param('action', '', PARAM_ALPHA);
-//$page       = optional_param('page', 0, PARAM_INT);                     // which page to show
-//$perpage    = optional_param('perpage', DEFAULT_PAGE_SIZE, PARAM_INT);  // how many per page
-//$currentgroup = optional_param('group', null, PARAM_INT); // Get the active group.
+$start_date;
+$end_date;
 
 //Require Login and admin 
 require_login();
@@ -57,9 +51,6 @@ echo $OUTPUT -> select(start_year_selector);
 echo $OUTPUT -> select(start_month_selector);
 echo $OUTPUT -> select(end_year_selector);
 echo $OUTPUT -> select(end_month_selector);
-
-
-
 
 //-------------------------------------------------------------------------------------------------------------------
 //
