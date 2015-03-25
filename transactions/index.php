@@ -30,11 +30,13 @@ define('SHOW_ALL_PAGE_SIZE', 5000);
 //$perpage    = optional_param('perpage', DEFAULT_PAGE_SIZE, PARAM_INT);  // how many per page
 //$currentgroup = optional_param('group', null, PARAM_INT); // Get the active group.
 
-//Require Admin Login
+//Require Login and admin 
 require_login();
+$ADMIN->add('reports', new admin_externalpage('transaction_report', get_string('transactions', 'report_transactions'), "$CFG->wwwroot/report/stats/transactions/index.php"));
+$settings = null;
 
 //The page's URL
-$url = new moodle_url('/admin/report/transactions/index.php', array('id' => $id));
+$url = "$CFG->wwwroot/report/stats/transactions/index.php";
 
 //Depending on how demanding the reporting is, this may need to be in effect.
 //raise_memory_limit(MEMORY_EXTRA);
@@ -45,6 +47,16 @@ $url = new moodle_url('/admin/report/transactions/index.php', array('id' => $id)
 //          Report Controls
 //
 //-------------------------------------------------------------------------------------------------------------------
+$start_year_selector = html_select::make_time_selector('years', 'myyear', '120308000');
+$start_month_selector = html_select::make_time_selector('months', 'mymonth', '120308000');
+
+$end_year_selector = html_select::make_time_selector('years', 'myyear', '120308000');
+$end_month_selector = html_select::make_time_selector('months', 'mymonth', '120308000');
+
+echo $OUTPUT -> select(start_year_selector);
+echo $OUTPUT -> select(start_month_selector);
+echo $OUTPUT -> select(end_year_selector);
+echo $OUTPUT -> select(end_month_selector);
 
 
 
