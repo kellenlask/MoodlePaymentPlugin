@@ -21,7 +21,7 @@ define('DEFAULT_PAGE_SIZE', 20);
 define('SHOW_ALL_PAGE_SIZE', 5000);
 
 //Variables of Import
-$start_date;
+$start_date; //No idea how to assign these yet. 
 $end_date;
 
 //Require Login and admin 
