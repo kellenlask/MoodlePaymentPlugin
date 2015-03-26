@@ -11,10 +11,15 @@ $PAGE -> set_heading(get_string('pluginname', 'block_discount'));
 
 //Check for the required variables
 $discount_code = required_param('discountcode', PARAM_BLOB);
+$blockid = required_param('blcokid', PARAM_INT);
 
-
+//Check for optional variables
+$id = optional_param('id', 0, PARAM_INT);
 
 $discount = new discount_form();
+echo $OUTPUT -> header();
+$discount -> display();
+echo $OUTPUT -> footer();
 
 $discount->display();
 ?>

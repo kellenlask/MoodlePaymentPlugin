@@ -12,6 +12,12 @@ class discount_form extends moodleform {
         $mform =& $this->_form;
         $mform->addElement('header', 'displayinfo', get_string('pluginname', 'block_discount'));
         
+        //Breadcrumbs
+        $settingsnode = $PAGE -> settingsnav -> add(get_string('discountsettings', 'block_discount')); 
+        $editurl = new moodle_url('/blocks/discount/view.php', array('id' => $id, 'courseid' => $courseid, 'blockid' => $blockid));
+        $editnode = $settingsnode -> add(get_string('edit_page', block_discount), $editurl);
+        $editnode -> make_active();
+        
         
     }
 }
