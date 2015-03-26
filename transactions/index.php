@@ -36,6 +36,9 @@ $url = "$CFG->wwwroot/report/stats/transactions/index.php";
 //raise_memory_limit(MEMORY_EXTRA);
 //core_php_time_limit::raise();
 
+//Check for the required variables
+$date = required_param('date', PARAM_DATE);
+
 //-------------------------------------------------------------------------------------------------------------------
 //
 //          Report Controls

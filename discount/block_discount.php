@@ -19,7 +19,10 @@ class block_discount extends block_base {
         
         $this->content = new stdClass;
         $this->content->text = 'content';  //ToDo: add content 
-        $this->content->footer = 'Footer'; //ToDo: add Footer
+        
+        $url - new moodle_url('/blocks/discount/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        $this -> content -> footer = html_writer::link($url, get_string('form_link', 'block_discount'));
+        
         
         return $this->content;
         
