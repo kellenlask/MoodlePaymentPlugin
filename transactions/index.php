@@ -1,4 +1,5 @@
 <?php
+
 /*
  * The Transactions portion of the Moodle Payment Plugin is meant to serve as the admin reporting
  * tool for behind the scenes, government tracking of the financial aspects of the transactions
@@ -10,11 +11,10 @@
 //          Moodle Extras
 //
 //-------------------------------------------------------------------------------------------------------------------
-
 //Required Libraries
 require('../../config.php');
-require_once($CFG->dirroot.'/report/stats/locallib.php');
-require_once($CFG->libdir.'/adminlib.php');
+require_once($CFG->dirroot . '/report/stats/locallib.php');
+require_once($CFG->libdir . '/adminlib.php');
 
 //Page Definitions
 define('DEFAULT_PAGE_SIZE', 20);
@@ -35,7 +35,6 @@ $url = "$CFG->wwwroot/report/stats/transactions/index.php";
 //Depending on how demanding the reporting is, this may need to be in effect.
 //raise_memory_limit(MEMORY_EXTRA);
 //core_php_time_limit::raise();
-
 //Check for the required variables
 $date = required_param('date', PARAM_DATE);
 
@@ -52,18 +51,17 @@ $end_month_selector = html_select::make_time_selector('months', 'mymonth', '1203
 
 $checkbox = html_select_option::make_checkbox('1', false, get_string('checkbox'));
 
-echo $OUTPUT -> select(start_year_selector);
-echo $OUTPUT -> select(start_month_selector);
-echo $OUTPUT -> select(end_year_selector);
-echo $OUTPUT -> select(end_month_selector);
-echo $OUTPUT -> checkbox($checkbox, get_string('checkbox'));
+echo $OUTPUT->select(start_year_selector);
+echo $OUTPUT->select(start_month_selector);
+echo $OUTPUT->select(end_year_selector);
+echo $OUTPUT->select(end_month_selector);
+echo $OUTPUT->checkbox($checkbox, get_string('checkbox'));
 //-------------------------------------------------------------------------------------------------------------------
 //
 //          Report Display
 //
 //-------------------------------------------------------------------------------------------------------------------
-
-
+//  The following is sample code to create a table of output
 //    $table = new html_table();
 //    $table->head  = array($strissue, $strstatus, $strdesc, $strconfig);
 //    $table->rowclasses = array('leftalign issue', 'leftalign status', 'leftalign desc', 'leftalign config');
@@ -83,36 +81,26 @@ echo $OUTPUT -> checkbox($checkbox, get_string('checkbox'));
 //    $table->data[] = $row;
 //
 //    echo html_writer::table($table);
- 
+//Offer Download  
+echo $OUTPUT->single_button(new moodle_url('/transactions/export/' . $this->plugin . '/report.php', $params), get_string('download', 'admin'));
 
 //-------------------------------------------------------------------------------------------------------------------
 //
 //          Logical Functions
 //
 //-------------------------------------------------------------------------------------------------------------------
-
 //ToDo: complete this method: the code is generic from the internet -- needs to be adapted
 //Given a start date, an end date and a file location, dump the transaction history into the .csv
-function make_csv() {
-    $num = 0;
-    $results = $DB->get_records_list();
-    if ($result = $mysqli->query($sql)) {
-        while ($p = $result->fetch_array()) {
-            $prod[$num]['id'] = $p['id'];
-            $prod[$num]['name'] = $p['name'];
-            $prod[$num]['description'] = $p['description'];
-            $num++;
-        }
+function make_csv($list, $location) {    
+        
+    $file = fopen($location."report.csv", "w");
+
+    foreach ($list as $line) {
+        fputcsv($file, explode(',', $line));
     }
-    
-    $output = fopen("php://output", 'w') or die("Can't open php://output");
-    header("Content-Type:application/csv");
-    header("Content-Disposition:attachment;filename=pressurecsv.csv");
-    fputcsv($output, array('id', 'name', 'description'));
-    foreach ($prod as $product) {
-        fputcsv($output, $product);
-    }
-    fclose($output);
-} //End make_csv
+
+    fclose($file);
+}//End make_csv
+
 
 ?>
