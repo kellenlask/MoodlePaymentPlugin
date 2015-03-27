@@ -50,11 +50,13 @@ $start_month_selector = html_select::make_time_selector('months', 'mymonth', '12
 $end_year_selector = html_select::make_time_selector('years', 'myyear', '120308000');
 $end_month_selector = html_select::make_time_selector('months', 'mymonth', '120308000');
 
+$checkbox = html_select_option::make_checkbox('1', false, get_string('checkbox'));
+
 echo $OUTPUT -> select(start_year_selector);
 echo $OUTPUT -> select(start_month_selector);
 echo $OUTPUT -> select(end_year_selector);
 echo $OUTPUT -> select(end_month_selector);
-
+echo $OUTPUT -> checkbox($checkbox, get_string('checkbox'));
 //-------------------------------------------------------------------------------------------------------------------
 //
 //          Report Display
