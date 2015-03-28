@@ -115,6 +115,4 @@ function make_csv($list, $location) {
 
     fclose($file);
 }//End make_csv
-
-
 ?>
