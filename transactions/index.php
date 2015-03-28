@@ -5,6 +5,8 @@
  * tool for behind the scenes, government tracking of the financial aspects of the transactions
  * processed by the Moodle payment plugin. This will involve reading the logs produced by the 
  * other payment plugin components -- mainly the payment and discount components.
+ * 
+ * moodle\lib\form contains the PHP for form elements
  */
 //-------------------------------------------------------------------------------------------------------------------
 //
