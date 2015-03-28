@@ -8,6 +8,13 @@
  */
 //-------------------------------------------------------------------------------------------------------------------
 //
+//          Fields
+//
+//-------------------------------------------------------------------------------------------------------------------
+define('TABLE', 'transactions'); //Name of transactions table
+
+//-------------------------------------------------------------------------------------------------------------------
+//
 //          Moodle Extras
 //
 //-------------------------------------------------------------------------------------------------------------------
@@ -89,9 +96,16 @@ echo $OUTPUT->single_button(new moodle_url('/transactions/export/' . $this->plug
 //          Logical Functions
 //
 //-------------------------------------------------------------------------------------------------------------------
-//ToDo: complete this method: the code is generic from the internet -- needs to be adapted
+
+function get_data($startYear, $startMonth, $endYear, $endMonth) {
+    $where_query = 'date between \''.$startYear.'-'.$startMonth.'-00\' AND \''.$endYear.'-'.$endMonth.'-00\''; //Moodle auto-inserts the "WHERE" keyword
+    $list = $DB -> get_records_select(TABLE, $where_query);    
+    
+    return $list;
+} //End get_data
+
 //Given a start date, an end date and a file location, dump the transaction history into the .csv
-function make_csv($list, $location) {    
+function make_csv($list, $location) {
         
     $file = fopen($location."report.csv", "w");
 
