@@ -57,6 +57,8 @@ echo $OUTPUT->header();
 		<option value="12">December</option>
 	</select>
 	<input name="endYear" type="number" min="2002" max="3000" />
+        <br>
+        <input type="submit" value="Download Records">
 </form>
 
 <?php
