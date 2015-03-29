@@ -13,7 +13,7 @@
 //          Fields
 //
 //-------------------------------------------------------------------------------------------------------------------
-define('TABLE', 'transactions'); //Name of transactions table
+define('TABLE', 'transactions'); //Name of transactions table in DB
 
 //-------------------------------------------------------------------------------------------------------------------
 //
@@ -22,7 +22,6 @@ define('TABLE', 'transactions'); //Name of transactions table
 //-------------------------------------------------------------------------------------------------------------------
 //Required Libraries
 require('../../config.php');
-require_once($CFG->dirroot . '/report/stats/locallib.php');
 require_once($CFG->libdir . '/adminlib.php');
 
 //Page Definitions
@@ -35,11 +34,11 @@ $end_date;
 
 //Require Login and admin 
 require_login();
-$ADMIN->add('reports', new admin_externalpage('transaction_report', get_string('transactions', 'report_transactions'), "$CFG->wwwroot/report/stats/transactions/index.php"));
+$ADMIN->add('reports', new admin_externalpage('transaction_report', get_string('transactions', 'report_transactions'), "$CFG->wwwroot/report/transactions/index.php"));
 $settings = null;
 
 //The page's URL
-$url = "$CFG->wwwroot/report/stats/transactions/index.php";
+$url = "$CFG->wwwroot/report/transactions/index.php";
 
 //Depending on how demanding the reporting is, this may need to be in effect.
 //raise_memory_limit(MEMORY_EXTRA);
@@ -92,10 +91,10 @@ echo $OUTPUT->checkbox($checkbox, get_string('checkbox'));
 //    echo html_writer::table($table);
 
 //Offer Download  
-single_button = (new moodle_url('/transactions/export/' . $this->plugin . '/report.php', $params), get_string('download', 'report_transactions'));
+$button = new single_button(new moodle_url('/transactions/export/' . $this->plugin . '/report.php', $params), get_string('download', 'report_transactions'));
 $action = new component_action('click');
-single_button -> add_action($action);
-echo $OUTPUT-> single_button;
+$button -> add_action($action);
+echo $OUTPUT-> $button;
 
 //-------------------------------------------------------------------------------------------------------------------
 //
