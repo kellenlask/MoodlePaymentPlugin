@@ -27,6 +27,10 @@ require($CFG->dirroot.'/report/transactions/locallib.php'); //This is the file w
 require_once($CFG->libdir . '/adminlib.php');
 require_once("{$CFG->libdir}/csvlib.class.php");
 
+//Depending on how demanding the reporting is, this may need to be in effect.
+//raise_memory_limit(MEMORY_EXTRA);
+//core_php_time_limit::raise();
+//
 //Require Login and admin 
 require_login();
 isadmin();
@@ -41,16 +45,8 @@ $start_month = required_param();
 $end_year  = required_param();
 $end_month = required_param();
 
-
-
 //The page's URL
 $url = "$CFG->wwwroot/report/transactions/index.php";
-
-//Depending on how demanding the reporting is, this may need to be in effect.
-//raise_memory_limit(MEMORY_EXTRA);
-//core_php_time_limit::raise();
-//Check for the required variables
-$date = required_param('date', PARAM_DATE);
 
 //-------------------------------------------------------------------------------------------------------------------
 //
