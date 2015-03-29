@@ -7,6 +7,7 @@
  * other payment plugin components -- mainly the payment and discount components.
  * 
  * moodle\lib\form contains the PHP for form elements
+ * var_dump($_REQUEST);  --- this will output all variables sent to the server for you to see.
  */
 //-------------------------------------------------------------------------------------------------------------------
 //
@@ -36,6 +37,7 @@ $end_month = required_param();
 
 //Require Login and admin 
 require_login();
+isadmin();
 
 //The page's URL
 $url = "$CFG->wwwroot/report/transactions/index.php";
