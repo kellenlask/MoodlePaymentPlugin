@@ -1,4 +1,8 @@
 <?php
+/*
+ * This page sets up the basic page that moodle requires to place a form object. The Form file contains the actual
+ * display information.
+ */
 require_once('../../config.php');
 require_once('discount_form.php');
 
