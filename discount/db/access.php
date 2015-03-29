@@ -1,23 +1,16 @@
 <?php
 
+defined('MOODLE_INTERNAL') || die();
+
 $capabilities = array(
-    'block/simplehtml:myaddinstance' => array(
+    'course/discount:view' => array(
+        'riskbitmask' => RISK_CONFIG,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
-            'user' => CAP_ALLOW
+            'manager' => CAP_ALLOW
         ),
-        'clonepermissionsfrom' => 'moodle/my:manageblocks'
-    ),
-    'block/simplehtml:addinstance' => array(
-        'riskbitmask' => RISK_SPAM | RISK_XSS,
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_BLOCK,
-        'archetypes' => array(
-            'admin' => CAP_ALLOW
-        ),
-        'clonepermissionsfrom' => 'moodle/site:manageblocks'
-    ),
+    )
 );
 
 ?>
