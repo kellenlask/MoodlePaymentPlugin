@@ -1,36 +1,11 @@
 <?php
 
-/*
- * The Transactions portion of the Moodle Payment Plugin is meant to serve as the admin reporting
- * tool for behind the scenes, government tracking of the financial aspects of the transactions
- * processed by the Moodle payment plugin. This will involve reading the logs produced by the 
- * other payment plugin components -- mainly the payment and discount components.
- * 
- * moodle\lib\form contains the PHP for form elements
- * var_dump($_REQUEST);  --- this will output all variables sent to the server for you to see.
- */
-//-------------------------------------------------------------------------------------------------------------------
-//
-//          Fields
-//
-//-------------------------------------------------------------------------------------------------------------------
-define('TABLE', 'transactions'); //Name of transactions table in DB
-
-//-------------------------------------------------------------------------------------------------------------------
-//
-//          Moodle Extras
-//
-//-------------------------------------------------------------------------------------------------------------------
-//Required Libraries
-require('../../config.php');
+require_once('../../config.php');
 require($CFG->dirroot.'/report/transactions/locallib.php'); //This is the file with all of our heafty code
 require_once($CFG->libdir . '/adminlib.php');
 require_once("{$CFG->libdir}/csvlib.class.php");
+global $CFG, $PAGE;
 
-//Depending on how demanding the reporting is, this may need to be in effect.
-//raise_memory_limit(MEMORY_EXTRA);
-//core_php_time_limit::raise();
-//
 //Require Login and admin 
 require_login();
 isadmin();
@@ -39,76 +14,69 @@ isadmin();
 define('DEFAULT_PAGE_SIZE', 20);
 define('SHOW_ALL_PAGE_SIZE', 5000);
 
-//Variables of Import
-$start_year =required_param('Start year', PARAM_YEAR);
-$start_month = required_param();
-$end_year  = required_param();
-$end_month = required_param();
+$PAGE->set_context(context_system::instance());
+$PAGE->set_pagelayout('standard');
+$PAGE->set_title('Transactions Reporting');
+$PAGE->set_heading('Transactions Reporting');
+$PAGE->set_url($CFG->wwwroot.'/report/transactions/index.php');
+echo $OUTPUT->header();
 
-//The page's URL
-$url = "$CFG->wwwroot/report/transactions/index.php";
+?>
 
-//-------------------------------------------------------------------------------------------------------------------
-//
-//          Report Controls
-//
-//-------------------------------------------------------------------------------------------------------------------
-$start_year_selector = html_select::make_time_selector('years', 'myyear', '120308000');
-$start_month_selector = html_select::make_time_selector('months', 'mymonth', '120308000');
+<form method="post" action="post.php">
+    <h2>Get Transaction Records for the Time Period...</h2><br>
+	FROM:
+	<select name="startMonth" >
+		<option value="01">January</option>
+		<option value="02">February</option>
+		<option value="03">March</option>
+		<option value="04">April</option>
+		<option value="05">May</option>
+		<option value="06">June</option>
+		<option value="07">July</option>
+		<option value="08">August</option>
+		<option value="09">September</option>
+		<option value="10">October</option>
+		<option value="11">November</option>
+		<option value="12">December</option>
+	</select>
+	<input name="startYear" type="number" min="2002" max="3000" />
+	TO:
+	<select name="endMonth" >
+		<option value="01">January</option>
+		<option value="02">February</option>
+		<option value="03">March</option>
+		<option value="04">April</option>
+		<option value="05">May</option>
+		<option value="06">June</option>
+		<option value="07">July</option>
+		<option value="08">August</option>
+		<option value="09">September</option>
+		<option value="10">October</option>
+		<option value="11">November</option>
+		<option value="12">December</option>
+	</select>
+	<input name="endYear" type="number" min="2002" max="3000" />
+</form>
 
-$end_year_selector = html_select::make_time_selector('years', 'myyear', '120308000');
-$end_month_selector = html_select::make_time_selector('months', 'mymonth', '120308000');
-
-$checkbox = html_select_option::make_checkbox('1', false, get_string('checkbox'));
-
-echo $OUTPUT->select(start_year_selector);
-echo $OUTPUT->select(start_month_selector);
-echo $OUTPUT->select(end_year_selector);
-echo $OUTPUT->select(end_month_selector);
-echo $OUTPUT->checkbox($checkbox, get_string('checkbox'));
-//-------------------------------------------------------------------------------------------------------------------
-//
-//          Report Display
-//
-//-------------------------------------------------------------------------------------------------------------------
+<?php
+//Depending on how demanding the reporting is, this may need to be in effect.
+//raise_memory_limit(MEMORY_EXTRA);
+//core_php_time_limit::raise();
 
 // Trigger a content view event.
 $event = \report_stats\event\report_viewed::create(array('context' => $context, 'relateduserid' => $userid,
         'other' => array('report' => $report, 'time' => $time, 'mode' => $mode)));
 $event->trigger();
 
-//  The following is sample code to create a table of output
-//    $table = new html_table();
-//    $table->head  = array($strissue, $strstatus, $strdesc, $strconfig);
-//    $table->rowclasses = array('leftalign issue', 'leftalign status', 'leftalign desc', 'leftalign config');
-//    $table->attributes = array('class'=>'admintable securityreport generaltable');
-//    $table->id = 'securityissuereporttable';
-//    $table->data  = array();
-//
-//    // print detail of one issue only
-//    $row = array();
-//    $row[0] = report_security_doc_link($issue, $result->name);
-//    $row[1] = $statusarr[$result->status];
-//    $row[2] = $result->info;
-//    $row[3] = is_null($result->link) ? '&nbsp;' : $result->link;
-//
-//    $PAGE->set_docs_path('report/security/' . $issue);
-//
-//    $table->data[] = $row;
-//
-//    echo html_writer::table($table);
-
-//Offer Download  
-$button = new single_button(new moodle_url('/transactions/export/' . $this->plugin . '/report.php', $params), get_string('download', 'report_transactions'));
-$action = new component_action('click');
-$button -> add_action($action);
-echo $OUTPUT-> $button;
-
-//-------------------------------------------------------------------------------------------------------------------
-//
-//          Logical Functions
-//
-//-------------------------------------------------------------------------------------------------------------------
+function get_form_information() {
+	$startMonth = $_POST['startMonth'];
+	$startYear = $_POST['startYear'];
+	$endMonth = $_POST['endMonth'];
+	$endYear = $_POST['endYear'];
+        
+        return array($startMonth, $startYear, $endMonth, $endYear);
+}
 
 function get_data($startYear, $startMonth, $endYear, $endMonth) {
     $where_query = 'date between \''.$startYear.'-'.$startMonth.'-00\' AND \''.$endYear.'-'.$endMonth.'-00\''; //Moodle auto-inserts the "WHERE" keyword
@@ -128,4 +96,7 @@ function make_csv($list, $location) {
 
     fclose($file);
 }//End make_csv
+
+echo $OUTPUT->footer();
+
 ?>
