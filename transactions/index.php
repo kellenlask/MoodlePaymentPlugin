@@ -29,13 +29,13 @@ define('DEFAULT_PAGE_SIZE', 20);
 define('SHOW_ALL_PAGE_SIZE', 5000);
 
 //Variables of Import
-$start_date; //No idea how to assign these yet. 
-$end_date;
+$start_year =required_param('Start year', PARAM_YEAR);
+$start_month = required_param();
+$end_year  = required_param();
+$end_month = required_param();
 
 //Require Login and admin 
 require_login();
-$ADMIN->add('reports', new admin_externalpage('transaction_report', get_string('transactions', 'report_transactions'), "$CFG->wwwroot/report/transactions/index.php"));
-$settings = null;
 
 //The page's URL
 $url = "$CFG->wwwroot/report/transactions/index.php";
@@ -69,6 +69,12 @@ echo $OUTPUT->checkbox($checkbox, get_string('checkbox'));
 //          Report Display
 //
 //-------------------------------------------------------------------------------------------------------------------
+
+// Trigger a content view event.
+$event = \report_stats\event\report_viewed::create(array('context' => $context, 'relateduserid' => $userid,
+        'other' => array('report' => $report, 'time' => $time, 'mode' => $mode)));
+$event->trigger();
+
 //  The following is sample code to create a table of output
 //    $table = new html_table();
 //    $table->head  = array($strissue, $strstatus, $strdesc, $strconfig);
