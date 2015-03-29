@@ -90,8 +90,12 @@ echo $OUTPUT->checkbox($checkbox, get_string('checkbox'));
 //    $table->data[] = $row;
 //
 //    echo html_writer::table($table);
+
 //Offer Download  
-echo $OUTPUT->single_button(new moodle_url('/transactions/export/' . $this->plugin . '/report.php', $params), get_string('download', 'admin'));
+single_button = (new moodle_url('/transactions/export/' . $this->plugin . '/report.php', $params), get_string('download', 'report_transactions'));
+$action = new component_action('click');
+single_button -> add_action($action);
+echo $OUTPUT-> single_button;
 
 //-------------------------------------------------------------------------------------------------------------------
 //
