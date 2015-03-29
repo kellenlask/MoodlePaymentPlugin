@@ -23,7 +23,13 @@ define('TABLE', 'transactions'); //Name of transactions table in DB
 //-------------------------------------------------------------------------------------------------------------------
 //Required Libraries
 require('../../config.php');
+require($CFG->dirroot.'/report/transactions/locallib.php'); //This is the file with all of our heafty code
 require_once($CFG->libdir . '/adminlib.php');
+require_once("{$CFG->libdir}/csvlib.class.php");
+
+//Require Login and admin 
+require_login();
+isadmin();
 
 //Page Definitions
 define('DEFAULT_PAGE_SIZE', 20);
@@ -35,9 +41,7 @@ $start_month = required_param();
 $end_year  = required_param();
 $end_month = required_param();
 
-//Require Login and admin 
-require_login();
-isadmin();
+
 
 //The page's URL
 $url = "$CFG->wwwroot/report/transactions/index.php";
