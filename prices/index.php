@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <?php 
 require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
@@ -16,6 +17,11 @@ $PAGE->set_heading('Set Course Price');
 $PAGE->set_url($CFG->wwwroot.'/course/prices/index.php');
 echo $OUTPUT->header();
 ?>
+
+
+<html>
+<head></head>
+<body>
 
 <form method="post" action="post.php">
         <h2>Set Course Price</h2><br>
@@ -39,3 +45,5 @@ $event->trigger();
 echo $OUTPUT->footer();
 
 ?>
+</body>
+</html>
