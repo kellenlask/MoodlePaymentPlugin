@@ -1,11 +1,11 @@
 <?php
 
 require_once('../../config.php');
-require($CFG->dirroot.'/report/transactions/locallib.php'); //This is the file with all of our heafty code
+require($CFG->dirroot.'/report/transactions/locallib.php'); //This is the file with all of our hefty code
 require_once($CFG->libdir . '/adminlib.php');
 require_once("{$CFG->libdir}/csvlib.class.php");
 global $CFG, $PAGE;
-
+TABLE="";
 //Require Login and admin 
 require_login();
 isadmin();
