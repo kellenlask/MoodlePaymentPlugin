@@ -7,10 +7,10 @@
  * down to guest access. This will require that teachers not disable guest
  * enrolment.
  */
-class block_discount extends block_base {
+class enrol_payment extends enrol_base {
 
     public function init() {
-        $this->title = get_string('pluginname', 'block_discount'); //This should grab the app name from the /lang/en/block_discount.php file
+        $this->title = get_string('pluginname', 'enrol_payment'); //This should grab the app name from the /lang/en/enrol_payment.php file
         
     } //End  public function init()
 

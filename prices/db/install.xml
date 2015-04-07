@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="MoodlePaymentPlugin/prices/db" VERSION="20150402" COMMENT="XMLDB file for Moodle block/payment"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+	
+  <TABLES>
+  
+	<TABLE NAME="block_prices" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="courseid" TYPE="char" LENGTH="16" NOTNULL="false" SEQUENCE="false" COMMENT="auth key"/>
+        <FIELD NAME="amount" TYPE="varchar" LENGTH="15" NOTNULL="false" SEQUENCE="false" COMMENT="auth key"/>
+        <FIELD NAME="status" TYPE="varchar" LENGTH="15" NOTNULL="false" SEQUENCE="false" COMMENT="auth key"/>
+        <FIELD NAME="comments" TYPE="varchar" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="auth key"/>
+	 </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

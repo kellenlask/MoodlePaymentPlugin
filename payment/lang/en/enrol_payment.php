@@ -1,7 +1,49 @@
 <?php
 
-$string['pluginname'] = 'Primary Payment Handling Plugin';
 $string['payment'] = 'Primary Payment Handling';
-
+$string['emptyCart'] = 'Your Cart is Empty';
+$string['removeCourse'] = 'Remove';
+$string['purchase'] = 'Purchase';
+$string['catSearch'] = 'Search by Category';
+$string['nameSearch'] = 'Search by Course Name';
+$string['search'] = 'Search';
+$string['cOutBttn'] = 'Checkout';
+$string['assignrole'] = 'Assign role';
+$string['shopTitle'] = 'Course Catalog';
+$string['cartTitle'] = 'Course Cart';
+$string['businessemail'] = '';
+$string['businessemail_desc'] = '';
+$string['cost'] = 'Enrol cost';
+$string['costerror'] = 'The enrolment cost is not numeric';
+$string['costorkey'] = 'Please choose one of the following methods of enrolment.';
+$string['currency'] = 'Currency Code';
+$string['defaultrole'] = 'Default role assignment';
+$string['defaultrole_desc'] = 'Select role which should be assigned to users during enrolments';
+$string['subscribe'] = 'Subscription';
+$string['subscribe_desc'] = 'Check if this is a subscription';
+$string['enrolenddate'] = 'End date';
+$string['enrolenddate_help'] = 'If enabled, users can be enrolled until this date only.';
+$string['enrolenddaterror'] = 'Enrolment end date cannot be earlier than start date';
+$string['enrolperiod'] = 'Enrolment/Subscription duration';
+$string['enrolperiod_desc'] = 'Default length of time that the enrolment is valid. This must be set if this course is a subscription!';
+$string['enrolperiod_help'] = 'Length of time that the enrolment is valid, starting with the moment the user is enrolled. If disabled, the enrolment duration will be unlimited.';
+$string['enrolstartdate'] = 'Start date';
+$string['enrolstartdate_help'] = 'If enabled, users can be enrolled from this date onward only.';
+$string['expiredaction'] = 'Enrolment expiration action';
+$string['expiredaction_help'] = 'Select action to carry out when user enrolment expires. Please note that some user data and settings are purged from course during course unenrolment.';
+$string['mailadmins'] = 'Notify admin';
+$string['mailstudents'] = 'Notify students';
+$string['mailteachers'] = 'Notify teachers';
+$string['nocost'] = 'There is no cost for this course!';
+$string['payment:config'] = 'Configure enrol instances';
+$string['payment:manage'] = 'Manage enrolled users';
+$string['payment:unenrol'] = 'Unenrol users from course';
+$string['payment:unenrolself'] = 'Unenrol self from the course';
+$string['pluginname'] = 'Payment';
+$string['pluginname_desc'] = 'Colorado Governor\'s Office of Information Technology Payment System';
+$string['sendpaymentbutton'] = 'Add to Cart';
+$string['status'] = 'Allow paid enrolments';
+$string['status_desc'] = 'Allow users to use Payment to enrol into a course by default.';
+$string['unenrolselfconfirm'] = 'Do you really want to unenrol yourself from course "{$a}"?';
 
 ?>

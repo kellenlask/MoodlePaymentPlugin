@@ -1,26 +1,121 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="MoodlePaymentPlugin/discount/db" VERSION="20150402" COMMENT="XMLDB file for Moodle block/payment"
+<XMLDB PATH="MoodlePaymentPlugin/payment/db" VERSION="20150402" COMMENT="XMLDB file for Moodle enrol/payment"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
 	
   <TABLES>
-	<TABLE NAME="block_payment" COMMENT="">
+  
+	<TABLE NAME="enrol_payment" COMMENT="">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-		<FIELD NAME="payerlastname"   	TYPE="varchar" LENGTH="20" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="payerfirstname"  	TYPE="varchar" LENGTH="20" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="status"   			TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="creditamount"   	TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="amount"   			TYPE="varchar" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="studentcredit"   	TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="tokenid"   		TYPE="varchar" LENGTH="50" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="paid"   			TYPE="varchar" LENGTH="5" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="comments"   		TYPE="varchar" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-        <FIELD NAME="studentcomments"   TYPE="varchar" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+        <FIELD NAME="authkey" TYPE="char" LENGTH="16" NOTNULL="false" SEQUENCE="false" COMMENT="auth key"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
+	
+	
+	<TABLE NAME="enrol_payment_transactions" COMMENT="Database for user payment infor">
+      <FIELDS>
+        <FIELD NAME="id" 				TYPE="int" 		LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+		<FIELD NAME="employeeid"   		TYPE="int"		LENGTH="9" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+		<FIELD NAME="last"   			TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+        <FIELD NAME="first"  			TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+        <FIELD NAME="amount"   			TYPE="char" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+        <FIELD NAME="email"   			TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+        <FIELD NAME="comments"   		TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+	
+	
+	<TABLE NAME="enrol_payment_cart" COMMENT="Database for payment cart values">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+		<FIELD NAME="uid" TYPE="int" LENGTH="16" NOTNULL="true" SEQUENCE="false" COMMENT="user id"/>
+        <FIELD NAME="cartvalues" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="encoded value for saved courses"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+<!--
+Moodle User Database Schema
+
+$DB->user
+
+"id" BIGINT NOT NULL,
+"auth" NVARCHAR(20) NOT NULL,
+"confirmed" SMALLINT NOT NULL,
+"policyagreed" SMALLINT NOT NULL,
+"deleted" SMALLINT NOT NULL,
+"suspended" SMALLINT NOT NULL,
+"mnethostid" BIGINT NOT NULL,
+"username" NVARCHAR(100) NOT NULL,
+"password" NVARCHAR(32) NOT NULL,
+"idnumber" NVARCHAR(255) NOT NULL,
+"firstname" NVARCHAR(100) NOT NULL,
+"lastname" NVARCHAR(100) NOT NULL,
+"email" NVARCHAR(100) NOT NULL,
+"emailstop" SMALLINT NOT NULL,
+"icq" NVARCHAR(15) NOT NULL,
+"skype" NVARCHAR(50) NOT NULL,
+"yahoo" NVARCHAR(50) NOT NULL,
+"aim" NVARCHAR(50) NOT NULL,
+"msn" NVARCHAR(50) NOT NULL,
+"phone1" NVARCHAR(20) NOT NULL,
+"phone2" NVARCHAR(20) NOT NULL,
+"institution" NVARCHAR(40) NOT NULL,
+"department" NVARCHAR(30) NOT NULL,
+"address" NVARCHAR(70) NOT NULL,
+"city" NVARCHAR(120) NOT NULL,
+"country" NVARCHAR(2) NOT NULL,
+"lang" NVARCHAR(30) NOT NULL,
+"theme" NVARCHAR(50) NOT NULL,
+"timezone" NVARCHAR(100) NOT NULL,
+"firstaccess" BIGINT NOT NULL,
+"lastaccess" BIGINT NOT NULL,
+"lastlogin" BIGINT NOT NULL,
+"currentlogin" BIGINT NOT NULL,
+"lastip" NVARCHAR(45) NOT NULL,
+"secret" NVARCHAR(15) NOT NULL,
+"picture" BIGINT NOT NULL,
+"url" NVARCHAR(255) NOT NULL,
+"description" NVARCHAR(-1) NULL,
+"descriptionformat" SMALLINT NOT NULL,
+"mailformat" SMALLINT NOT NULL,
+"maildigest" SMALLINT NOT NULL,
+"maildisplay" SMALLINT NOT NULL,
+"htmleditor" SMALLINT NOT NULL,
+"autosubscribe" SMALLINT NOT NULL,
+"trackforums" SMALLINT NOT NULL,
+"timecreated" BIGINT NOT NULL,
+"timemodified" BIGINT NOT NULL,
+"trustbitmask" BIGINT NOT NULL,
+"imagealt" NVARCHAR(255) NULL,
+"screenreader" SMALLINT NOT NULL
+
+user_enrolments
+"id" BIGINT NOT NULL,
+
+"status" BIGINT NOT NULL,
+
+"enrolid" BIGINT NOT NULL,
+
+"userid" BIGINT NOT NULL,
+
+"timestart" BIGINT NOT NULL,
+
+"timeend" BIGINT NOT NULL,
+
+"modifierid" BIGINT NOT NULL,
+
+"timecreated" BIGINT NOT NULL,
+
+"timemodified" BIGINT NOT NULL
+-->
   </TABLES>
 </XMLDB>
