@@ -18,27 +18,17 @@ class discount_form extends moodleform {
         $editnode = $settingsnode -> add(get_string('edit_page', block_discount), $editurl);
         $editnode -> make_active();
         
-		//Form Elements
-		$lineOne = array();
-		$lineTwo = array();
-		$lineThree = array();
-		$lineFour = array();
-		
+		//Form Elements		
 		$options = array();
 		$allcourses = coursecat::get(0)->get_courses(array('recursive' = true);
 		foreach ($allcourses as $course) {
 			$options[$course->id] = $course-fullname;
 		}
 		$mform->addElement('select', 'courseid', get_string('course'), $options);
+		$mform->addElement('code', 'code', "Code:", $attributes);
+		$mform->addElement('amount', 'amount', "Amount:", $attributes);
 		
-		
-		$mform->createElement();
-		$mform->createElement();
-		$mform->addGroup();
-		$mform->addElement();
-		$mform->addElement();
-		$mform->addElement();
-		$mform->addElement();
+		add_action_buttons($cancel = false, $submitlabel="Save");
 		
         
     }
