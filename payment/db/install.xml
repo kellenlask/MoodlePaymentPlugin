@@ -43,6 +43,10 @@
       </KEYS>
     </TABLE>
 <!--
+SELECT u.username, c.shortname, DATE_FORMAT(FROM_UNIXTIME(p.timecompleted ),'%Y-%m-%d') AS completed FROM prefix_course_completions AS p 
+JOIN prefix_course AS c ON p.course = c.id JOIN prefix_user AS u ON p.userid = u.id WHERE c.enablecompletion = 1 ORDER BY u.username
+
+SELECT * FROM enrol_payment_transactions
 Moodle User Database Schema
 
 $DB->user
@@ -100,21 +104,13 @@ $DB->user
 
 user_enrolments
 "id" BIGINT NOT NULL,
-
 "status" BIGINT NOT NULL,
-
 "enrolid" BIGINT NOT NULL,
-
 "userid" BIGINT NOT NULL,
-
 "timestart" BIGINT NOT NULL,
-
 "timeend" BIGINT NOT NULL,
-
 "modifierid" BIGINT NOT NULL,
-
 "timecreated" BIGINT NOT NULL,
-
 "timemodified" BIGINT NOT NULL
 -->
   </TABLES>

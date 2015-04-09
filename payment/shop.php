@@ -208,7 +208,7 @@ echo '
                 }
             echo' </select>
             <input type="text" name="name" placeholder="'.get_string('nameSearch', 'enrol_payment').'" autocomplete="on">
-            <input type="submit" value="'.get_string('search', 'enrol_payment').'">
+            <input type="submit" value="'.get_string('sendpaymentbutton', 'enrol_payment').'">
         </form>
     </div>
     <a href="'.$carturl.'">'.$checkoutstr.' </a>

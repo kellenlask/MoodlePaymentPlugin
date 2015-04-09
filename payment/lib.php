@@ -159,8 +159,6 @@ class enrol_payment_plugin extends enrol_plugin {
             } else {
                 $coursefullname  = format_string($course->fullname, true, array('context' => $context));
                 $courseid        = $instance->courseid;
-                $userfirstname   = $USER->first;
-                $userlastname    = $USER->last;
                 $urlstring       = $CFG->wwwroot;
                 $shopurl         = $CFG->wwwroot.'/enrol/payment/shop.php';
                 $keydb           = $DB->get_records('enrol_payment');

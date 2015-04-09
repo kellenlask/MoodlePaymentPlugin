@@ -5,7 +5,7 @@ require($CFG->dirroot.'/report/transactions/locallib.php'); //This is the file w
 require_once($CFG->libdir . '/adminlib.php');
 require_once("{$CFG->libdir}/csvlib.class.php");
 global $CFG, $PAGE;
-TABLE="";
+TABLE="cvs_logging";
 //Require Login and admin 
 require_login();
 isadmin();
