@@ -19,12 +19,20 @@ class discount_form extends moodleform {
         $editnode -> make_active();
         
 		//Form Elements		
+		$rowOne = array();
+		
+		//Selection Box of courses
 		$options = array();
 		$allcourses = coursecat::get(0)->get_courses(array('recursive' = true);
 		foreach ($allcourses as $course) {
 			$options[$course->id] = $course-fullname;
 		}
-		$mform->addElement('select', 'courseid', get_string('course'), $options);
+		//$mform->addElement('select', 'courseid', get_string('course'), $options);
+		
+		$rowOne[] =& $mform->createElement('select', 'courseid', get_string('course'), $options);
+		$rowOne[] =& $mform->createElement('button', 'checkDiscounts', 'Check  Discounts'); 
+		$mform->addGroup($rowOne, 'rowOne', '', array(' '), false);
+		
 		$mform->addElement('code', 'code', "Code:", $attributes);
 		$mform->addElement('amount', 'amount', "Amount:", $attributes);
 		
@@ -32,5 +40,13 @@ class discount_form extends moodleform {
 		
         
     }
+	
+	function validation($data, $files) {
+		$errors= array();
+     
+		
+        return $errors;		
+		
+	}
 }
 ?>
