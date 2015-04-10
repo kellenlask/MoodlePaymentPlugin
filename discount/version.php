@@ -10,7 +10,7 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version = 2015030201; // The current module version (Date: YYYYMMDDXX)
 $plugin->requires = 2014051200; // Requires this Moodle version
 $plugin->cron = 0; // Period for cron to check this module (secs)
-$plugin->component = 'block_payment';
+$plugin->component = 'block_discount';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = 'Stable';
 
