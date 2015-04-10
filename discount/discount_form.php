@@ -18,21 +18,14 @@ class discount_form extends moodleform {
         $editnode = $settingsnode -> add(get_string('edit_page', block_discount), $editurl);
         $editnode -> make_active();
         
-		//Form Elements		
-		$rowOne = array();
-		
+		//Form Elements			
 		//Selection Box of courses
 		$options = array();
 		$allcourses = coursecat::get(0)->get_courses(array('recursive' = true);
 		foreach ($allcourses as $course) {
 			$options[$course->id] = $course-fullname;
 		}
-		//$mform->addElement('select', 'courseid', get_string('course'), $options);
-		
-		$rowOne[] =& $mform->createElement('select', 'courseid', get_string('course'), $options);
-		$rowOne[] =& $mform->createElement('button', 'checkDiscounts', 'Check  Discounts'); 
-		$mform->addGroup($rowOne, 'rowOne', '', array(' '), false);
-		
+		$mform->addElement('select', 'courseid', get_string('course'), $options);		
 		$mform->addElement('text', 'code', "Code:", $attributes);
 		$mform->addElement('text', 'amount', "Amount:", $attributes);
 		$mform->addRule( 'courseid', 'You must select a course.', 'required' );
@@ -46,15 +39,13 @@ class discount_form extends moodleform {
 		$errors= array();
 		if (empty($data['code'])){
             $errors['code'] = "Must enter a code.");
-        } elseif (empty($data['amount']) or floatval($data['amount']) > 0){
+        } elseif (empty($data['amount']) or floatval($data['amount']) <= 0){
             $errors['amount'] = "Must enter a valid amount.");
         } else {
 			$table = "block_discount_codes";
-			$dataobject = array('' => $data['courseid'], '' => $data['courseid'], '' => $data['courseid']);
+			$dataobject = array('id' => $data['courseid'], 'discountcode' => $data['code'], 'discountamount' => floatval($data['amount']));
 			$DB->update_record($table, $dataobject, $bulk=false);
-		}
-		
-		
+		}	
 		
         return $errors;	
 		
