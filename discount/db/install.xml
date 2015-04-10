@@ -17,8 +17,7 @@
     <TABLE NAME="credits" COMMENT="">
         <FIELDS>
             <FIELD NAME="id"            TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
-            <FIELD NAME="courseid"      TYPE="char" LENGTH="16" NOTNULL="false" SEQUENCE="false" COMMENT="auth key"/>
-            <FIELD NAME="employeeid"  	TYPE="int"	 LENGTH="9" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+            <FIELD NAME="username"  	TYPE="varchar"	 LENGTH="100" NOTNULL="true" SEQUENCE="false" ENUM="false" />
             <FIELD NAME="creditamount"  TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
             <FIELD NAME="comments"      TYPE="varchar" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
         </FIELDS>
