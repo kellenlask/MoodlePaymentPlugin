@@ -33,8 +33,9 @@ class discount_form extends moodleform {
 		$rowOne[] =& $mform->createElement('button', 'checkDiscounts', 'Check  Discounts'); 
 		$mform->addGroup($rowOne, 'rowOne', '', array(' '), false);
 		
-		$mform->addElement('code', 'code', "Code:", $attributes);
-		$mform->addElement('amount', 'amount', "Amount:", $attributes);
+		$mform->addElement('text', 'code', "Code:", $attributes);
+		$mform->addElement('text', 'amount', "Amount:", $attributes);
+		$mform->addRule( 'courseid', 'You must select a course.', 'required' );
 		
 		add_action_buttons($cancel = false, $submitlabel="Save");
 		
@@ -43,9 +44,19 @@ class discount_form extends moodleform {
 	
 	function validation($data, $files) {
 		$errors= array();
-     
+		if (empty($data['code'])){
+            $errors['code'] = "Must enter a code.");
+        } elseif (empty($data['amount']) or floatval($data['amount']) > 0){
+            $errors['amount'] = "Must enter a valid amount.");
+        } else {
+			$table = "block_discount_codes";
+			$dataobject = array('' => $data['courseid'], '' => $data['courseid'], '' => $data['courseid']);
+			$DB->update_record($table, $dataobject, $bulk=false);
+		}
 		
-        return $errors;		
+		
+		
+        return $errors;	
 		
 	}
 }

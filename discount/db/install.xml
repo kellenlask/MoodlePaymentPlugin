@@ -6,11 +6,10 @@
   <TABLES>
         <TABLE NAME="block_discount_codes" COMMENT="">
             <FIELDS>
-              <FIELD NAME="id"                                   TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-              <FIELD NAME="status"                            TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+              <FIELD NAME="id"              TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+              <FIELD NAME="status"          TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
               <FIELD NAME="discountcode"   	TYPE="varchar" LENGTH="5" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-              <FIELD NAME="discountamount"   	TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-              <FIELD NAME="comments"   		TYPE="varchar" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+              <FIELD NAME="discountamount"  TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
             </FIELDS>
             <KEYS>
               <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
