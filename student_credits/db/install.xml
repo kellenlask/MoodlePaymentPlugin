@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="MoodlePaymentPlugin/discount/db" VERSION="20150402" COMMENT="XMLDB file for Moodle block/discount"
+<XMLDB PATH="MoodlePaymentPlugin/student_credits/db" VERSION="20150402" COMMENT="XMLDB file for Moodle /student_credits"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
 	
@@ -13,7 +13,7 @@
         </FIELDS>
         <KEYS>
               <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-         </KEYS>
+        </KEYS>
     </TABLE>
   </TABLES>
 </XMLDB>
