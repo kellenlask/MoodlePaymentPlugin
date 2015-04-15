@@ -8,6 +8,7 @@ require_once("{$CFG->libdir}/formslib.php");
 
 class credit_form extends moodleform {
     function definition() {
+		global $CFG, $USER, $OUTPUT;		
         //Header
         $mform =& $this->_form;
         $mform->addElement('header', 'displayinfo', get_string('pluginname', 'block_credit'));
