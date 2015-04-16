@@ -7,9 +7,9 @@
     <TABLE NAME="credits" COMMENT="">
         <FIELDS>
             <FIELD NAME="id"            TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
-            <FIELD NAME="username"  	TYPE="varchar"	 LENGTH="100" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-            <FIELD NAME="creditamount"  TYPE="varchar" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
-            <FIELD NAME="comments"      TYPE="varchar" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+            <FIELD NAME="username"  	TYPE="char"	 LENGTH="100" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+            <FIELD NAME="creditamount"  TYPE="char" LENGTH="15" NOTNULL="true" SEQUENCE="false" ENUM="false" />
+            <FIELD NAME="comments"      TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" />
         </FIELDS>
         <KEYS>
               <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
